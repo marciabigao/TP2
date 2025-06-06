@@ -2,10 +2,12 @@
 #define PACOTE_HPP
 
 #include "ListaEncadeada.hpp"
+#include "Grafo.hpp"
 #include <string>
 
 class Pacote {
     private:
+    int id;
     int momentoPostagem;
     std::string nomeRemetente;
     std::string nomeDestinatario;
@@ -15,7 +17,7 @@ class Pacote {
 
     public:
     Pacote();
-    Pacote(int dataHora, std::string remetente, std::string destinatario, int origem, int destino);
+    Pacote(int id, int dataHora, std::string remetente, std::string destinatario, int origem, int destino);
 
     int getMomentoPostagem();
     std::string getNomeRemetente();

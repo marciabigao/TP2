@@ -1,6 +1,7 @@
 #include "../include/Pacote.hpp"
 
 Pacote::Pacote() {
+    this->id = -1;
     this->momentoPostagem = -1;
     this->nomeRemetente = "";
     this->nomeDestinatario = "";
@@ -9,7 +10,8 @@ Pacote::Pacote() {
     this->rota = new ListaEncadeada();
 }
 
-Pacote::Pacote(int dataHora, std::string remetente, std::string destinatario, int origem, int destino) {
+Pacote::Pacote(int id, int dataHora, std::string remetente, std::string destinatario, int origem, int destino) {
+    this->id = id;
     this->momentoPostagem = dataHora;
     this->nomeRemetente = remetente;
     this->nomeDestinatario = destinatario;
