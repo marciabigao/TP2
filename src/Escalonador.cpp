@@ -1,8 +1,11 @@
 #include "../include/Escalonador.hpp"
 
-Escalonador::Escalonador(int tamanhoMax) {
+Escalonador::Escalonador(int tamanhoMax, int capacidadeTransporte, int latenciaTransporte, int intervaloEntreTransportes) {
     this->tamanho = 0;
     this->dados = new Evento[tamanhoMax];
+    this->capacidadeTransporte = capacidadeTransporte;
+    this->latenciaTransporte = latenciaTransporte;
+    this->intervaloEntreTransportes = intervaloEntreTransportes;
 }
 
 Escalonador::~Escalonador() {

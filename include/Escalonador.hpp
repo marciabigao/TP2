@@ -7,9 +7,12 @@ class Escalonador {
     private:
     int tamanho;
     Evento* dados;
+    int capacidadeTransporte;
+    int latenciaTransporte;
+    int intervaloEntreTransportes;
 
     public:
-    Escalonador(int tamanhoMax);
+    Escalonador(int tamanhoMax, int capacidadeTransporte, int latenciaTransporte, int intervaloEntreTransportes);
     ~Escalonador();
 
     void inserir(Evento* evento);

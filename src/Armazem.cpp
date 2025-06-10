@@ -10,3 +10,7 @@ Armazem::~Armazem() {
     delete[] secoes;
     delete vizinhos;
 }
+
+void Armazem::alocarPilha() {
+    this->secoes = new Pilha[numeroVizinhos];
+}

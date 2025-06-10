@@ -2,7 +2,7 @@
 #define NOLISTA_HPP
 
 class NoLista {
-    private:
+    public:
     int id;
     NoLista* proximo;
 
@@ -10,6 +10,7 @@ class NoLista {
     NoLista();
 
     friend class ListaEncadeada;
+    friend class Grafo;
 };
 
 #endif

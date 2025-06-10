@@ -4,7 +4,7 @@
 #include "NoLista.hpp"
 
 class ListaEncadeada {
-    private:
+    public:
     NoLista* primeiro;
     NoLista* ultimo;
     int tamanho;
@@ -13,8 +13,12 @@ class ListaEncadeada {
     ListaEncadeada();
     ~ListaEncadeada();
 
+    NoLista* getPrimeiro();
+
     void inserir(int id);
     void limpar();
+
+    friend class Grafo;
 };
 
 #endif

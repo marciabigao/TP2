@@ -1,8 +1,11 @@
 #include "../include/Grafo.hpp"
+#include "../include/NoLista.hpp"
+#include <iostream>
 
-Grafo::Grafo(int numeroVertices) {
+Grafo::Grafo(int numeroVertices, int custoRemocao) {
     this->numeroVertices = numeroVertices;
     this->armazens = new Armazem[numeroVertices];
+    this->custoRemocao = custoRemocao;
 
     for(int i = 0; i < numeroVertices; i++) {
         armazens[i].id = i;
@@ -17,12 +20,25 @@ void Grafo::setNumeroVizinhos(int IDArmazemAlvo, int numVizinhos) {
     armazens[IDArmazemAlvo].numeroVizinhos = numVizinhos;
 }
 
-void Grafo::insereVizinho(int IDArmazemAlvo, int IDArmazemDestino) {
-    armazens[IDArmazemAlvo].vizinhos->inserir(IDArmazemDestino);
+void Grafo::insereVizinho(int IDArmazemAlvo, int IDArmazemVizinho) {
+    armazens[IDArmazemAlvo].vizinhos->inserir(IDArmazemVizinho);
+}
+
+void Grafo::criaSecoes(int IDArmazemAlvo) {
+    armazens[IDArmazemAlvo].alocarPilha();
+
+    NoLista* p = armazens[IDArmazemAlvo].vizinhos->getPrimeiro();
+    p = p->proximo;
+    int IDpilhas[armazens[IDArmazemAlvo].numeroVizinhos];
+    int posicao = 0;
+    
+    while(p != nullptr) {
+        IDpilhas[posicao] = p->id;
+        posicao++;
+        p = p->proximo;
+    }
 
     for(int i = 0; i < armazens[IDArmazemAlvo].numeroVizinhos; i++) {
-        if(armazens[IDArmazemAlvo].secoes[i].getID() == -1) {
-            armazens[IDArmazemAlvo].secoes[i].setID(IDArmazemDestino);
-        }
+        armazens[IDArmazemAlvo].secoes[i].setID(IDpilhas[i]);
     }
 }

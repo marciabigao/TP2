@@ -1,9 +1,9 @@
 #include "../include/Pilha.hpp"
 
 Pilha::Pilha() {
-    int id = -1;
-    topo = nullptr;
-    tamanho = 0;
+    this->id = -1;
+    this->topo = nullptr;
+    this->tamanho = 0;
 }
 
 void Pilha::limpar() {

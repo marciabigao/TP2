@@ -5,7 +5,7 @@
 #include "ListaEncadeada.hpp"
 
 class Armazem {
-    private:
+    public:
     int id;
     int numeroVizinhos;
     Pilha* secoes;
@@ -14,6 +14,7 @@ class Armazem {
     public:
     Armazem();
     ~Armazem();
+    void alocarPilha();
 
     friend class Grafo;
 };

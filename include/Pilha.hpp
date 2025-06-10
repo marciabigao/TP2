@@ -5,7 +5,7 @@
 #include "Pacote.hpp"
 
 class Pilha {
-    private:
+    public:
     int id;
     NoPilha* topo;
     int tamanho;

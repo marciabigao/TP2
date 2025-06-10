@@ -26,10 +26,11 @@ int ChegadaPacote::getIDArmazemDestino() {
     return this->idArmazemDestino;
 }
 
-Transporte::Transporte(int tempo, int idArmazemOrigem, int idArmazemDestino) {
+Transporte::Transporte(int tempo, int idArmazemOrigem, int idArmazemDestino, Pacote pacote) {
     this->setTempo(tempo);
     this->idArmazemOrigem = idArmazemOrigem;
     this->idArmazemDestino = idArmazemDestino;
+    this->pacote = pacote;
 }
 
 int Transporte::getArmazemOrigem() {
@@ -38,4 +39,8 @@ int Transporte::getArmazemOrigem() {
 
 int Transporte::getArmazemDestino() {
     return this->idArmazemDestino;
+}
+
+Pacote Transporte::getPacote() {
+    return this->pacote;
 }

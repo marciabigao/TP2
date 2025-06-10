@@ -7,16 +7,18 @@ Pacote::Pacote() {
     this->nomeDestinatario = "";
     this->armazemOrigem = -1;
     this->armazemDestino = -1;
+    this->estado = 0;
     this->rota = new ListaEncadeada();
 }
 
-Pacote::Pacote(int id, int dataHora, std::string remetente, std::string destinatario, int origem, int destino) {
+Pacote::Pacote(int id, int dataHora, std::string remetente, std::string destinatario, int origem, int destino, int estado) {
     this->id = id;
     this->momentoPostagem = dataHora;
     this->nomeRemetente = remetente;
     this->nomeDestinatario = destinatario;
     this->armazemOrigem = origem;
     this->armazemDestino = destino;
+    this->estado = estado;
 }
 
 int Pacote::getMomentoPostagem() {

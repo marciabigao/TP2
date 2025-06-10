@@ -2,9 +2,11 @@
 #define EVENTO_HPP
 
 #include "Pacote.hpp"
+#include <string>
 
 class Evento {
     private:
+    std::string chave;
     int tempo;
 
     public:
@@ -26,13 +28,15 @@ class ChegadaPacote : public Evento {
 
 class Transporte : public Evento {
     private:
+    Pacote pacote;
     int idArmazemOrigem;
     int idArmazemDestino;
 
     public:
-    Transporte(int tempo, int idArmazemOrigem, int idArmazemDestino);
+    Transporte(int tempo, int idArmazemOrigem, int idArmazemDestino, Pacote pacote);
     int getArmazemOrigem();
     int getArmazemDestino();
+    Pacote getPacote();
 };
 
 #endif

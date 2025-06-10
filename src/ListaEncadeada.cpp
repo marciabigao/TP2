@@ -26,6 +26,10 @@ ListaEncadeada::~ListaEncadeada() {
     delete primeiro;
 }
 
+NoLista* ListaEncadeada::getPrimeiro() {
+    return primeiro;
+}
+
 void ListaEncadeada::inserir(int id) {
     NoLista* novo;
 
