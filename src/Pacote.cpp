@@ -6,15 +6,9 @@ Pacote::Pacote() {
     this->armazemOrigem = -1;
     this->armazemDestino = -1;
     this->estado = 0;
+    this->tempoArmazenado = 0;
+    this->tempoSendoTransportado = 0;
     this->rota = new ListaEncadeada();
-}
-
-Pacote::Pacote(int id, int dataHora, int origem, int destino, int estado) {
-    this->id = id;
-    this->momentoPostagem = dataHora;
-    this->armazemOrigem = origem;
-    this->armazemDestino = destino;
-    this->estado = estado;
 }
 
 int Pacote::getMomentoPostagem() {
@@ -27,4 +21,40 @@ int Pacote::getArmazemOrigem() {
 
 int Pacote::getArmazemDestino() {
     return this->armazemDestino;
+}
+
+int Pacote::getID() {
+    return this->id;
+}
+
+int Pacote::getEstado() {
+    return this->estado;
+}
+
+int Pacote::getTempoArmazenado() {
+    return this->tempoArmazenado;
+}
+
+int Pacote::getTempoSendoTransportado() {
+    return this->tempoSendoTransportado;
+}
+
+void Pacote::setID(int id) {
+    this->id = id;
+}
+
+void Pacote::setMomentoPostagem(int momentoPostagem) {
+    this->momentoPostagem = momentoPostagem;
+}
+
+void Pacote::setArmazemOrigem(int armazemOrigem) {
+    this->armazemOrigem = armazemOrigem;
+}
+
+void Pacote::setAmarzemDestino(int armazemDestino) {
+    this->armazemDestino = armazemDestino;
+}
+
+void Pacote::setRota(ListaEncadeada* rota) {
+    this->rota = rota;
 }

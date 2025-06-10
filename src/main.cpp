@@ -1,6 +1,8 @@
 #include "../include/Grafo.hpp"
 #include "../include/Escalonador.hpp"
 #include "../include/Pacote.hpp"
+#include "../include/ListaEncadeada.hpp"
+#include "../include/Fila.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -63,9 +65,79 @@ int main(int argc, char** argv) {
     //leitura dos pacotes
     int numeroPacotes;
     arquivo >> numeroPacotes;
-    Pacote aux;
+    Pacote* pacotesSistema = new Pacote[numeroPacotes];
     for(int i = 0; i < numeroPacotes; i++) {
-        
+        int tempoChegada, id, armazemOrigem, armazemDestino;
+        std::string infos;
+        arquivo >> tempoChegada >> infos >> id >> infos >> armazemOrigem >> infos >> armazemDestino;
+
+        pacotesSistema[i].setMomentoPostagem(tempoChegada);
+        pacotesSistema[i].setID(id);
+        pacotesSistema[i].setArmazemOrigem(armazemOrigem);
+        pacotesSistema[i].setAmarzemDestino(armazemDestino);
+
+        //determinando rota do pacote com pesquisa em largura pelo grafo
+        Fila filaPesquisaLargura;
+        bool visitados[quantidadeArmazens];
+        int pai[quantidadeArmazens];
+        for (int i = 0; i < quantidadeArmazens; i++) {
+            visitados[i] = false;
+            pai[i] = -1;
+        }
+
+        visitados[armazemOrigem] = true;
+        filaPesquisaLargura.enfileira(armazemOrigem);
+
+        while(!filaPesquisaLargura.vazia()) {
+            int armazemAtual = filaPesquisaLargura.desenfileira();
+            if(armazemAtual == armazemDestino) {break;}
+
+            int adjacentes[grafo.armazens[armazemAtual].numeroVizinhos];
+            int contador = 0;
+            NoLista* p = grafo.armazens[armazemAtual].vizinhos->primeiro->proximo;
+            while(p != nullptr) {
+                adjacentes[contador] = p->id;
+                p = p->proximo;
+                contador++;
+            }
+
+            for(int j = 0; j < grafo.armazens[armazemAtual].numeroVizinhos; j++) {
+                if(!visitados[adjacentes[j]]) {
+                    visitados[adjacentes[j]] = true;
+                    pai[adjacentes[j]] = armazemAtual;
+                    filaPesquisaLargura.enfileira(adjacentes[j]);
+                }
+            }
+        }
+
+        int caminho[quantidadeArmazens];
+        int tam = 0;
+
+        for (int v = armazemDestino; v != -1; v = pai[v]) {
+            caminho[tam++] = v;
+        }
+
+        ListaEncadeada* aux;
+        aux = new ListaEncadeada();
+        for (int i = tam - 1; i >= 0; i--) {
+            aux->inserir(caminho[i]);
+        }
+
+        pacotesSistema[i].setRota(aux);
+    }
+
+    for(int i = 0; i < numeroPacotes; i++) {
+        std::cout << "ID pacote: " << pacotesSistema[i].getID() << " Postagem: " << pacotesSistema[i].getMomentoPostagem() 
+        << " Origem: " << pacotesSistema[i].getArmazemOrigem() << " Destino: " << pacotesSistema[i].getArmazemDestino()
+        << " Estado: " << pacotesSistema[i].getEstado() << " Temp Arm: " << pacotesSistema[i].getTempoArmazenado()
+        << " Tempo Transp: " << pacotesSistema[i].getTempoSendoTransportado() << " Rota: ";
+
+        NoLista* p = pacotesSistema[i].rota->primeiro->proximo;
+        while(p != nullptr) {
+            std::cout << p->id << " ";
+            p = p->proximo;
+        }
+        std::cout << std::endl;
     }
 
     return 0;

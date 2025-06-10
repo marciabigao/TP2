@@ -13,17 +13,24 @@ class Pacote {
     int estado;
     int tempoArmazenado;
     int tempoSendoTransportado;
-    ListaEncadeada* rota;
 
     public:
+    ListaEncadeada* rota;
     Pacote();
-    Pacote(int id, int dataHora, int origem, int destino, int estado);
 
+    int getID();
     int getMomentoPostagem();
     int getArmazemOrigem();
     int getArmazemDestino();
+    int getEstado();
+    int getTempoArmazenado();
+    int getTempoSendoTransportado();
 
-    void calcularRota();
+    void setID(int id);
+    void setMomentoPostagem(int momentoPostagem);
+    void setAmarzemDestino(int armazemDestino);
+    void setArmazemOrigem(int armazemOrigem);
+    void setRota(ListaEncadeada* rota);
 };
 
 #endif
