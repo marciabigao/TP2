@@ -8,20 +8,18 @@ class Pacote {
     private:
     int id;
     int momentoPostagem;
-    std::string nomeRemetente;
-    std::string nomeDestinatario;
     int armazemOrigem;
     int armazemDestino;
     int estado;
+    int tempoArmazenado;
+    int tempoSendoTransportado;
     ListaEncadeada* rota;
 
     public:
     Pacote();
-    Pacote(int id, int dataHora, std::string remetente, std::string destinatario, int origem, int destino, int estado);
+    Pacote(int id, int dataHora, int origem, int destino, int estado);
 
     int getMomentoPostagem();
-    std::string getNomeRemetente();
-    std::string getNomeDestinatario();
     int getArmazemOrigem();
     int getArmazemDestino();
 

@@ -1,5 +1,6 @@
 #include "../include/Grafo.hpp"
 #include "../include/Escalonador.hpp"
+#include "../include/Pacote.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -58,8 +59,14 @@ int main(int argc, char** argv) {
         std::cout << std::endl << std::endl;
     }
     */
-   
+
     //leitura dos pacotes
+    int numeroPacotes;
+    arquivo >> numeroPacotes;
+    Pacote aux;
+    for(int i = 0; i < numeroPacotes; i++) {
+        
+    }
 
     return 0;
 }
