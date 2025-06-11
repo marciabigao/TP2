@@ -5,7 +5,7 @@ Pacote::Pacote() {
     this->momentoPostagem = -1;
     this->armazemOrigem = -1;
     this->armazemDestino = -1;
-    this->estado = 0;
+    this->estado = 1;
     this->tempoArmazenado = 0;
     this->tempoSendoTransportado = 0;
     this->rota = new ListaEncadeada();

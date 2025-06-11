@@ -17,6 +17,7 @@ class Grafo {
     void setNumeroVizinhos(int IDArmazemAlvo, int numVizinhos);
     void insereVizinho(int IDArmazemAlvo, int IDArmazemVizinho);
     void criaSecoes(int IDArmazemAlvo);
+    void inserePacoteSecao(int IDArmazemAlvo, int secaoDestino, Pacote pacote);
 };
 
 #endif

@@ -7,10 +7,12 @@
 #include <iostream>
 
 #include "../include/NoLista.hpp"
+#include "../include/NoPilha.hpp"
 
 const int M_MAXTAM = 200;
 
 int main(int argc, char** argv) {
+    //lendo e configurando armazens
     int capacidadeTransporte, latenciaTransporte, intervaloEntreTransportes, custoRemocao, quantidadeArmazens;
 
     std::ifstream arquivo(argv[1]);
@@ -126,6 +128,7 @@ int main(int argc, char** argv) {
         pacotesSistema[i].setRota(aux);
     }
 
+    /*
     for(int i = 0; i < numeroPacotes; i++) {
         std::cout << "ID pacote: " << pacotesSistema[i].getID() << " Postagem: " << pacotesSistema[i].getMomentoPostagem() 
         << " Origem: " << pacotesSistema[i].getArmazemOrigem() << " Destino: " << pacotesSistema[i].getArmazemDestino()
@@ -139,6 +142,28 @@ int main(int argc, char** argv) {
         }
         std::cout << std::endl;
     }
+    */
 
+    //adicionando pacotes nas pilhas iniciais
+    for(int i = 0; i < numeroPacotes; i++) {
+        grafo.inserePacoteSecao(pacotesSistema[i].getArmazemOrigem(), pacotesSistema[i].rota->getIDpos(2), pacotesSistema[i]);
+    }
+
+    /*
+    for(int i = 0; i < quantidadeArmazens; i++) {
+        std::cout << "Pilhas Armazem " << grafo.armazens[i].id << std::endl;
+        for(int j = 0; j < grafo.armazens[i].numeroVizinhos; j++) {
+            std::cout << "Pilha Destino: " << grafo.armazens[i].secoes[j].id << std::endl;
+            NoPilha* p = grafo.armazens[i].secoes[j].topo;
+            while(p != nullptr) {
+                std::cout << p->pacote.getID() << " ";
+                p = p->proximo;
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+    }
+    */
+    
     return 0;
 }

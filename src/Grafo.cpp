@@ -42,3 +42,8 @@ void Grafo::criaSecoes(int IDArmazemAlvo) {
         armazens[IDArmazemAlvo].secoes[i].setID(IDpilhas[i]);
     }
 }
+
+void Grafo::inserePacoteSecao(int IDArmazemAlvo, int secaoDestino, Pacote pacote) {
+    int indice = armazens[IDArmazemAlvo].getIndicePilha(secaoDestino);
+    armazens[IDArmazemAlvo].secoes[indice].empilha(pacote);
+}

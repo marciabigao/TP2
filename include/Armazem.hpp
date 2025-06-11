@@ -14,7 +14,9 @@ class Armazem {
     public:
     Armazem();
     ~Armazem();
+
     void alocarPilha();
+    int getIndicePilha(int idPilhaDesejada);
 
     friend class Grafo;
 };

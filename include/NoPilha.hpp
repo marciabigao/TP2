@@ -4,7 +4,7 @@
 #include "Pacote.hpp"
 
 class NoPilha {
-    private:
+    public:
     Pacote pacote;
     NoPilha* proximo;
 
