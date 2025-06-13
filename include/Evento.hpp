@@ -5,38 +5,47 @@
 #include <string>
 
 class Evento {
-    private:
+    protected:
     std::string chave;
+    int tipoEvento;
     int tempo;
 
     public:
     Evento();
+    virtual ~Evento() {};
     void setTempo(int tempo);
     int getTempo();
+    int getTipoEvento();
+    std::string getChave();
 };
 
 class ChegadaPacote : public Evento {
     private:
     Pacote pacote;
-    int idArmazemDestino;
+    int idArmazemChegada;
+    int idArmazemProximoDestino;
 
     public:
-    ChegadaPacote(int tempo, Pacote pacote, int idArmazemDestino);
+    ChegadaPacote(int tempo, Pacote pacote, int idArmazemChegada, int idArmazemProximoDestino);
     Pacote getPacote();
-    int getIDArmazemDestino();
+    int getIDArmazemChegada();
+    int getIDArmazemProximoDestino();
+    void setEstadoPacote(int estado);
 };
 
 class Transporte : public Evento {
     private:
-    Pacote pacote;
+    Pacote* pacotes;
     int idArmazemOrigem;
     int idArmazemDestino;
+    int capacidadeTransporte;
 
     public:
-    Transporte(int tempo, int idArmazemOrigem, int idArmazemDestino, Pacote pacote);
+    Transporte(int tempo, int idArmazemOrigem, int idArmazemDestino, int capacidadeTransporte);
+    void setPacotes(Pacote* pacotes);
     int getArmazemOrigem();
     int getArmazemDestino();
-    Pacote getPacote();
+    Pacote* getPacotes();
 };
 
 #endif

@@ -6,7 +6,7 @@
 class Escalonador {
     private:
     int tamanho;
-    Evento* dados;
+    Evento** dados;
     int capacidadeTransporte;
     int latenciaTransporte;
     int intervaloEntreTransportes;

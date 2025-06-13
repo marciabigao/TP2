@@ -13,6 +13,7 @@ class Pacote {
     int estado;
     int tempoArmazenado;
     int tempoSendoTransportado;
+    int parteCaminho;
 
     public:
     ListaEncadeada* rota;
@@ -25,11 +26,13 @@ class Pacote {
     int getEstado();
     int getTempoArmazenado();
     int getTempoSendoTransportado();
+    int getParteCaminho();
 
     void setID(int id);
     void setMomentoPostagem(int momentoPostagem);
     void setAmarzemDestino(int armazemDestino);
     void setArmazemOrigem(int armazemOrigem);
+    void setEstado(int estado);
     void setRota(ListaEncadeada* rota);
 };
 
