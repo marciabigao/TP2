@@ -22,7 +22,7 @@ int Pilha::getID() {
     return this->id;
 }
 
-void Pilha::empilha(Pacote pacote) {
+void Pilha::empilha(Pacote* pacote) {
     NoPilha* novo;
 
     novo = new NoPilha();
@@ -32,8 +32,8 @@ void Pilha::empilha(Pacote pacote) {
     tamanho++;
 }
 
-Pacote Pilha::desempilha() {
-    Pacote aux;
+Pacote* Pilha::desempilha() {
+    Pacote* aux;
     NoPilha* p;
 
     if(tamanho == 0) {

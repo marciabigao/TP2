@@ -9,7 +9,6 @@ Pacote::Pacote() {
     this->tempoArmazenado = 0;
     this->tempoSendoTransportado = 0;
     this->rota = new ListaEncadeada();
-    this->parteCaminho = 0;
 }
 
 int Pacote::getMomentoPostagem() {
@@ -38,10 +37,6 @@ int Pacote::getTempoArmazenado() {
 
 int Pacote::getTempoSendoTransportado() {
     return this->tempoSendoTransportado;
-}
-
-int Pacote::getParteCaminho() {
-    return this->parteCaminho;
 }
 
 void Pacote::setID(int id) {

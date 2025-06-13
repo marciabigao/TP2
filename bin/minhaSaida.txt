@@ -1,0 +1,46 @@
+000001 pacote 003 armazenado em 000 na secao 002
+000007 pacote 006 armazenado em 003 na secao 002
+000009 pacote 000 armazenado em 001 na secao 002
+000018 pacote 005 armazenado em 002 na secao 003
+000045 pacote 001 armazenado em 001 na secao 002
+000078 pacote 007 armazenado em 000 na secao 002
+000092 pacote 004 armazenado em 003 na secao 002
+000093 pacote 002 armazenado em 000 na secao 002
+000102 pacote 002 removido de 000 na secao 002
+000103 pacote 007 removido de 000 na secao 002
+000104 pacote 003 removido de 000 na secao 002
+000104 pacote 003 em transito de 000 para 002
+000104 pacote 007 em transito de 000 para 002
+000104 pacote 002 rearmazenado em 000 na secao 002
+000102 pacote 001 removido de 001 na secao 002
+000103 pacote 000 removido de 001 na secao 002
+000103 pacote 000 em transito de 001 para 002
+000103 pacote 001 em transito de 001 para 002
+000102 pacote 005 removido de 002 na secao 003
+000102 pacote 005 em transito de 002 para 003
+000102 pacote 004 removido de 003 na secao 002
+000103 pacote 006 removido de 003 na secao 002
+000103 pacote 006 em transito de 003 para 002
+000103 pacote 004 em transito de 003 para 002
+000122 pacote 005 entregue em 003
+000123 pacote 000 armazenado em 002 na secao 000
+000123 pacote 001 entregue em 002
+000123 pacote 004 entregue em 002
+000123 pacote 006 entregue em 002
+000124 pacote 003 armazenado em 002 na secao 003
+000124 pacote 007 armazenado em 002 na secao 003
+000202 pacote 002 removido de 000 na secao 002
+000202 pacote 002 em transito de 000 para 002
+000202 pacote 000 removido de 002 na secao 000
+000202 pacote 000 em transito de 002 para 000
+000202 pacote 007 removido de 002 na secao 003
+000203 pacote 003 removido de 002 na secao 003
+000203 pacote 003 em transito de 002 para 003
+000203 pacote 007 em transito de 002 para 003
+000222 pacote 000 entregue em 000
+000222 pacote 002 armazenado em 002 na secao 003
+000223 pacote 003 entregue em 003
+000223 pacote 007 entregue em 003
+000302 pacote 002 removido de 002 na secao 003
+000302 pacote 002 em transito de 002 para 003
+000322 pacote 002 entregue em 003

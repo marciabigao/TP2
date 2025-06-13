@@ -13,7 +13,6 @@ class Pacote {
     int estado;
     int tempoArmazenado;
     int tempoSendoTransportado;
-    int parteCaminho;
 
     public:
     ListaEncadeada* rota;
@@ -26,7 +25,6 @@ class Pacote {
     int getEstado();
     int getTempoArmazenado();
     int getTempoSendoTransportado();
-    int getParteCaminho();
 
     void setID(int id);
     void setMomentoPostagem(int momentoPostagem);

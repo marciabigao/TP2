@@ -15,6 +15,7 @@ class ListaEncadeada {
 
     NoLista* getPrimeiro();
     int getIDpos(int pos);
+    int getSucessor(int id);
 
     void inserir(int id);
     void limpar();

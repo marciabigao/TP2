@@ -31,15 +31,23 @@ std::string formataComZeros(int numeroDigitos, int inteiro) {
     return oss.str();
 }
 
-ChegadaPacote::ChegadaPacote(int tempo, Pacote pacote, int idArmazemChegada, int idArmazemProximoDestino) {
-    this->setTempo(tempo);
-    this->pacote = pacote;
-    this->idArmazemChegada = idArmazemChegada;
-    this->chave = formataComZeros(6, tempo) + formataComZeros(6, pacote.getID()) + "1";
+ChegadaPacote::ChegadaPacote() {
+    this->setTempo(-1);
+    this->idArmazemChegada = -1;
+    this->chave = "";
     this->tipoEvento = 1;
 }
 
-Pacote ChegadaPacote::getPacote() {
+ChegadaPacote::ChegadaPacote(int tempo, Pacote* pacote, int idArmazemChegada, int idArmazemProximoDestino) {
+    this->setTempo(tempo);
+    this->pacote = pacote;
+    this->idArmazemChegada = idArmazemChegada;
+    this->idArmazemProximoDestino = idArmazemProximoDestino;
+    this->chave = formataComZeros(6, tempo) + formataComZeros(6, pacote->getID()) + "1";
+    this->tipoEvento = 1;
+}
+
+Pacote* ChegadaPacote::getPacote() {
     return this->pacote;
 }
 
@@ -52,7 +60,7 @@ int ChegadaPacote::getIDArmazemProximoDestino() {
 }
 
 void ChegadaPacote::setEstadoPacote(int estado) {
-    this->pacote.setEstado(estado);
+    this->pacote->setEstado(estado);
 }
 
 Transporte::Transporte(int tempo, int idArmazemOrigem, int idArmazemDestino, int capacidadeTransporte) {

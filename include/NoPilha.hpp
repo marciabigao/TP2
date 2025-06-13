@@ -5,7 +5,7 @@
 
 class NoPilha {
     public:
-    Pacote pacote;
+    Pacote* pacote;
     NoPilha* proximo;
 
     public:

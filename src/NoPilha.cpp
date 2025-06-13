@@ -2,4 +2,5 @@
 
 NoPilha::NoPilha() {
     proximo = nullptr;
+    pacote = nullptr;
 }

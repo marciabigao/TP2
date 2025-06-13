@@ -26,9 +26,8 @@ void Escalonador::inserir(Evento* evento) {
         int i = tamanho;
         int ancestral = (i - 1) / 2;
 
-        while(dados[i]->getTempo() < dados[ancestral]->getTempo()) {
-            Evento* temp = new Evento();
-            temp = dados[ancestral];
+        while(dados[i]->getChave() < dados[ancestral]->getChave()) {
+            Evento* temp = dados[ancestral];
             dados[ancestral] = dados[i];
             dados[i] = temp;
 
@@ -38,7 +37,6 @@ void Escalonador::inserir(Evento* evento) {
     }
 
     tamanho++;
-    delete evento;
 }
 
 Evento* Escalonador::remover() {
@@ -51,7 +49,7 @@ Evento* Escalonador::remover() {
     int dir = 2 * i + 2;
 
     if (esq < tamanho && dir < tamanho) {
-        s = (dados[dir]->getTempo() > dados[esq]->getTempo()) ? esq : dir;
+        s = (dados[dir]->getChave() > dados[esq]->getChave()) ? esq : dir;
     } else if (esq < tamanho) {
         s = esq;
     } else if (dir < tamanho) {
@@ -60,9 +58,8 @@ Evento* Escalonador::remover() {
         s = i;
     }
 
-    while(dados[i]->getTempo() > dados[s]->getTempo()) {
-        Evento* temp = new Evento();
-        temp = dados[s];
+    while(dados[i]->getChave() > dados[s]->getChave()) {
+        Evento* temp = dados[s];
         dados[s] = dados[i];
         dados[i] = temp;
 
@@ -71,7 +68,7 @@ Evento* Escalonador::remover() {
         int dir = 2 * i + 2;
 
         if (esq < tamanho && dir < tamanho) {
-            s = (dados[dir]->getTempo() > dados[esq]->getTempo()) ? esq : dir;
+            s = (dados[dir]->getChave() > dados[esq]->getChave()) ? esq : dir;
         } else if (esq < tamanho) {
             s = esq;
         } else if (dir < tamanho) {

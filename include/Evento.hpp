@@ -21,13 +21,14 @@ class Evento {
 
 class ChegadaPacote : public Evento {
     private:
-    Pacote pacote;
+    Pacote* pacote;
     int idArmazemChegada;
     int idArmazemProximoDestino;
 
     public:
-    ChegadaPacote(int tempo, Pacote pacote, int idArmazemChegada, int idArmazemProximoDestino);
-    Pacote getPacote();
+    ChegadaPacote();
+    ChegadaPacote(int tempo, Pacote* pacote, int idArmazemChegada, int idArmazemProximoDestino);
+    Pacote* getPacote();
     int getIDArmazemChegada();
     int getIDArmazemProximoDestino();
     void setEstadoPacote(int estado);

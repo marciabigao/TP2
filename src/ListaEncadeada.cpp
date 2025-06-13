@@ -43,6 +43,21 @@ int ListaEncadeada::getIDpos(int pos) {
     return p->id;
 }
 
+int ListaEncadeada::getSucessor(int id) {
+    NoLista* p;
+    p = primeiro;
+
+    while(p->id != id && p != nullptr) {
+        p = p->proximo;
+    }
+
+    if(p->proximo == nullptr || p == nullptr) {return -1;}
+
+    p = p->proximo;
+
+    return p->id;
+}
+
 void ListaEncadeada::inserir(int id) {
     NoLista* novo;
 
