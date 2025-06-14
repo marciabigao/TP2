@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
             if(tempoChegada < relogio) {relogio = tempoChegada;}
         }
 
-        pacotesSistema[i].setID(id);
+        pacotesSistema[i].setID(i);
         pacotesSistema[i].setArmazemOrigem(armazemOrigem);
         pacotesSistema[i].setAmarzemDestino(armazemDestino);
 
@@ -136,7 +136,7 @@ int main(int argc, char** argv) {
     for(int i = 0; i < quantidadeArmazens; i++) {
         for(int j = 0; j < quantidadeArmazens; j++) {
             if(matrizAdjacencia[i][j]) {
-                Transporte* novoTransporte = new Transporte(relogio + 100, i, j, capacidadeTransporte);
+                Transporte* novoTransporte = new Transporte(relogio + intervaloEntreTransportes, i, j, capacidadeTransporte);
                 escalonador.inserir(novoTransporte);
             }
         }
@@ -208,7 +208,7 @@ int main(int argc, char** argv) {
                 }
             }
 
-            Transporte* novoTransporte = new Transporte(tempoInicioTransporte + 100, armazemOrigem, 
+            Transporte* novoTransporte = new Transporte(tempoInicioTransporte + intervaloEntreTransportes, armazemOrigem, 
             armazemDestino, capacidadeTransporte);
             escalonador.inserir(novoTransporte);
         }
@@ -227,13 +227,6 @@ int main(int argc, char** argv) {
                 int armazemChegada = chegada->getIDArmazemChegada();
                 int armazemProximoDestino = chegada->getIDArmazemProximoDestino();
                 int indicePilha = grafo.armazens[armazemChegada].getIndicePilha(armazemProximoDestino);
-
-                if (grafo.armazens[armazemChegada].secoes[indicePilha].getID() != armazemProximoDestino) {
-                    std::cerr << "[ERRO] Pilha errada selecionada: destino era " << armazemProximoDestino
-                    << " mas retornou ID " << grafo.armazens[armazemChegada].secoes[indicePilha].getID()
-                    << " no armazém " << armazemChegada << std::endl;
-                    exit(1);
-                }
 
                 chegada->getPacote()->setEstado(3);
                 grafo.armazens[armazemChegada].secoes[indicePilha].empilha(chegada->getPacote());
