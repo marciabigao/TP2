@@ -14,6 +14,7 @@ class Pacote {
     int estado; //estado no qual o pacote se encontra
     int tempoArmazenado; //tempo em que o pacote ficou armazenado
     int tempoSendoTransportado; //tempo em que o pacote ficou em transporte
+    int ultimoTempoChegada; //auxiliar para calcular o tempo em que ficou armazenado
 
     public:
     ListaEncadeada* rota; //melhor rota do armazem de destino ao armazem de origem
@@ -26,6 +27,7 @@ class Pacote {
     int getEstado();
     int getTempoArmazenado();
     int getTempoSendoTransportado();
+    int getUltimoTempoChegada();
 
     void setID(int id);
     void setMomentoPostagem(int momentoPostagem);
@@ -33,6 +35,9 @@ class Pacote {
     void setArmazemOrigem(int armazemOrigem);
     void setEstado(int estado);
     void setRota(ListaEncadeada* rota);
+    void incrementaTempoArmazenado(int tempo);
+    void incrementaTempoTransporte(int tempo);
+    void setUltimoTempoChegada(int tempo);
 };
 
 #endif

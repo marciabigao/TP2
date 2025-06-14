@@ -10,6 +10,7 @@ Pacote::Pacote() {
     this->tempoArmazenado = 0;
     this->tempoSendoTransportado = 0;
     this->rota = new ListaEncadeada();
+    this->ultimoTempoChegada = 0;
 }
 
 //retorna o momento de postagem de um pacote
@@ -47,6 +48,11 @@ int Pacote::getTempoSendoTransportado() {
     return this->tempoSendoTransportado;
 }
 
+//retorna ultimo tempo em que pacote chegou a um armazem
+int Pacote::getUltimoTempoChegada() {
+    return this->ultimoTempoChegada;
+}
+
 //atribui um id ao pacote
 void Pacote::setID(int id) {
     this->id = id;
@@ -75,4 +81,19 @@ void Pacote::setRota(ListaEncadeada* rota) {
 //atribuo um estado a um pacote
 void Pacote::setEstado(int estado) {
     this->estado = estado;
+}
+
+//aumenta o tempo que o pacote ficou armazenado
+void Pacote::incrementaTempoArmazenado(int tempo) {
+    this->tempoArmazenado += tempo;
+}
+
+//aumenta o tempo em que pacote ficou em transporte
+void Pacote::incrementaTempoTransporte(int tempo) {
+    this->tempoSendoTransportado += tempo;
+}
+
+//atribui o ultimo tempo em que um pacote chegou a um armazem
+void Pacote::setUltimoTempoChegada(int tempo) {
+    this->ultimoTempoChegada = tempo;
 }

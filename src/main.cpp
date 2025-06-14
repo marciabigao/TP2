@@ -188,6 +188,7 @@ int main(int argc, char** argv) {
                 for(int i = 0; i < capacidadeTransporte; i++) {
                     Pacote* pacote = auxiliar.desempilha();
                     pacote->setEstado(4);
+                    pacote->incrementaTempoArmazenado(relogio - pacote->getUltimoTempoChegada());
                     int novoProxDestino = pacote->rota->getSucessor(armazemDestino);
 
                     //escalono a chegada dos pacotes no proximo armazem
@@ -226,6 +227,10 @@ int main(int argc, char** argv) {
 
         if(evento->getTipoEvento() == 1) { //se evento e chegada de pacote
             ChegadaPacote* chegada = dynamic_cast<ChegadaPacote*>(evento);
+
+            //incremento as estatisticas de tempo
+            chegada->getPacote()->incrementaTempoArmazenado(latenciaTransporte);
+            chegada->getPacote()->setUltimoTempoChegada(relogio);
 
             //se o pacote chegou ao seu destino final
             if(chegada->getPacote()->getArmazemDestino() == chegada->getIDArmazemChegada() || chegada->getIDArmazemProximoDestino() == -1) {
