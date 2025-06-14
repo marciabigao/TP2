@@ -40,6 +40,7 @@ void Escalonador::inserir(Evento* evento) {
 }
 
 Evento* Escalonador::remover() {
+    if(tamanho == 0) {return nullptr;}
     Evento* retorno = dados[0];
     dados[0] = dados[tamanho - 1];
     tamanho--;

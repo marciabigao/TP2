@@ -22,5 +22,5 @@ int Armazem::getIndicePilha(int idPilhaDesejada) {
         }
     }
 
-    return 0;
+    return -1;
 }

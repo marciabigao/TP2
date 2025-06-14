@@ -203,9 +203,10 @@ int main(int argc, char** argv) {
         novaChegada->setEstadoPacote(2);
     }
 
-
-    while(!escalonador.vazio()) {
+    int pacotesEntregues = 0;
+    while(!escalonador.vazio() && pacotesEntregues < numeroPacotes) {
         Evento* evento = escalonador.remover();
+        if(evento == nullptr) {break;}
         relogio = evento->getTempo();
         std::string chave = evento->getChave();
 
@@ -221,7 +222,7 @@ int main(int argc, char** argv) {
                 while(!grafo.armazens[armazemOrigem].secoes[indicePilhaOrigem].vazia()) {
                     Pacote* pacote = grafo.armazens[armazemOrigem].secoes[indicePilhaOrigem].desempilha();
                     relogio += custoRemocao;
-                    std::cout <<  std::setw(6) << std::setfill('0') << relogio << " pacote ";
+                    std::cout <<  std::setw(7) << std::setfill('0') << relogio << " pacote ";
                     std::cout << std::setw(3) << std::setfill('0') << pacote->getID() << " removido de ";
                     std::cout << std::setw(3) << std::setfill('0') << armazemOrigem << " na secao ";
                     std::cout << std::setw(3) << std::setfill('0') << armazemDestino << std::endl;
@@ -239,7 +240,7 @@ int main(int argc, char** argv) {
                     novaChegada->getPacote()->setEstado(2);
                     escalonador.inserir(novaChegada);
                     
-                    std::cout <<  std::setw(6) << std::setfill('0') << relogio << " pacote ";
+                    std::cout <<  std::setw(7) << std::setfill('0') << relogio << " pacote ";
                     std::cout << std::setw(3) << std::setfill('0') << pacote->getID() << " em transito de ";
                     std::cout << std::setw(3) << std::setfill('0') << armazemOrigem << " para ";
                     std::cout << std::setw(3) << std::setfill('0') << armazemDestino << std::endl;
@@ -253,7 +254,7 @@ int main(int argc, char** argv) {
                     Pacote* pacote = auxiliar.desempilha();
                     grafo.armazens[armazemOrigem].secoes[indicePilhaOrigem].empilha(pacote);
 
-                    std::cout <<  std::setw(6) << std::setfill('0') << relogio << " pacote ";
+                    std::cout <<  std::setw(7) << std::setfill('0') << relogio << " pacote ";
                     std::cout << std::setw(3) << std::setfill('0') << pacote->getID() << " rearmazenado em ";
                     std::cout << std::setw(3) << std::setfill('0') << armazemOrigem << " na secao ";
                     std::cout << std::setw(3) << std::setfill('0') << armazemDestino << std::endl;
@@ -261,7 +262,7 @@ int main(int argc, char** argv) {
             }
 
             Transporte* novoTransporte = new Transporte(tempoInicioTransporte + 100, armazemOrigem, 
-                armazemDestino, capacidadeTransporte);
+            armazemDestino, capacidadeTransporte);
             escalonador.inserir(novoTransporte);
         }
 
@@ -269,27 +270,32 @@ int main(int argc, char** argv) {
             ChegadaPacote* chegada = dynamic_cast<ChegadaPacote*>(evento);
 
             if(chegada->getPacote()->getArmazemDestino() == chegada->getIDArmazemChegada() || chegada->getIDArmazemProximoDestino() == -1) {
-                std::cout <<  std::setw(6) << std::setfill('0') << relogio << " pacote ";
+                std::cout <<  std::setw(7) << std::setfill('0') << relogio << " pacote ";
                 std::cout << std::setw(3) << std::setfill('0') << chegada->getPacote()->getID() << " entregue em ";
                 std::cout << std::setw(3) << std::setfill('0') << chegada->getPacote()->getArmazemDestino() << std::endl;
                 chegada->getPacote()->setEstado(5);
+                pacotesEntregues++;
             }
             else {
                 int armazemChegada = chegada->getIDArmazemChegada();
                 int armazemProximoDestino = chegada->getIDArmazemProximoDestino();
                 int indicePilha = grafo.armazens[armazemChegada].getIndicePilha(armazemProximoDestino);
+
+                if (grafo.armazens[armazemChegada].secoes[indicePilha].getID() != armazemProximoDestino) {
+                    std::cerr << "[ERRO] Pilha errada selecionada: destino era " << armazemProximoDestino
+                    << " mas retornou ID " << grafo.armazens[armazemChegada].secoes[indicePilha].getID()
+                    << " no armazém " << armazemChegada << std::endl;
+                    exit(1);
+                }
+
                 chegada->getPacote()->setEstado(3);
                 grafo.armazens[armazemChegada].secoes[indicePilha].empilha(chegada->getPacote());
 
-                std::cout <<  std::setw(6) << std::setfill('0') << relogio << " pacote ";
+                std::cout <<  std::setw(7) << std::setfill('0') << relogio << " pacote ";
                 std::cout << std::setw(3) << std::setfill('0') << chegada->getPacote()->getID() << " armazenado em ";
                 std::cout << std::setw(3) << std::setfill('0') << armazemChegada << " na secao ";
                 std::cout << std::setw(3) << std::setfill('0') << armazemProximoDestino << std::endl;
             }
-        }
-
-        if(relogio > 400) {
-            break;
         }
     }
     
