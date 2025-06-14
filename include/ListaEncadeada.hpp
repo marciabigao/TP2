@@ -3,11 +3,12 @@
 
 #include "Nos.hpp"
 
+//TAD representativo de uma lista encadeada 
 class ListaEncadeada {
     public:
-    NoLista* primeiro;
-    NoLista* ultimo;
-    int tamanho;
+    NoLista* primeiro; //ponteiro para primeiro elemento da lista
+    NoLista* ultimo; //ponteiro para ultimo elemento da lista
+    int tamanho; //tamanho atual da lista
 
     public:
     ListaEncadeada();

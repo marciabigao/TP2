@@ -1,12 +1,14 @@
 #include "../include/ListaEncadeada.hpp"
 #include "../include/Nos.hpp"
 
+//construtor
 ListaEncadeada::ListaEncadeada() {
     primeiro = new NoLista();
     ultimo = primeiro;
     tamanho = 0;
 }
 
+//retira todos os nos, menos a cabeca
 void ListaEncadeada::limpar() {
     NoLista* p;
     
@@ -22,15 +24,18 @@ void ListaEncadeada::limpar() {
     tamanho = 0;
 }
 
+//destrutor
 ListaEncadeada::~ListaEncadeada() {
     this->limpar();
     delete primeiro;
 }
 
+//retorna o primeiro elemento da lista
 NoLista* ListaEncadeada::getPrimeiro() {
     return primeiro;
 }
 
+//retorna o identificador associado a uma determinada posicao da lista
 int ListaEncadeada::getIDpos(int pos) {
     NoLista* p;
     p = primeiro;
@@ -44,6 +49,7 @@ int ListaEncadeada::getIDpos(int pos) {
     return p->id;
 }
 
+//retorna o identificador do sucessor de um determinado id da lista
 int ListaEncadeada::getSucessor(int id) {
     NoLista* p;
     p = primeiro;
@@ -59,6 +65,7 @@ int ListaEncadeada::getSucessor(int id) {
     return p->id;
 }
 
+//insere um novo elemento ao final da lista
 void ListaEncadeada::inserir(int id) {
     NoLista* novo;
 

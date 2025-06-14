@@ -1,5 +1,6 @@
 #include "../include/Escalonador.hpp"
 
+//construtor
 Escalonador::Escalonador(int tamanhoMax, int capacidadeTransporte, int latenciaTransporte, int intervaloEntreTransportes) {
     this->tamanho = 0;
     this->dados = new Evento*[tamanhoMax];
@@ -8,6 +9,7 @@ Escalonador::Escalonador(int tamanhoMax, int capacidadeTransporte, int latenciaT
     this->intervaloEntreTransportes = intervaloEntreTransportes;
 }
 
+//destrutor
 Escalonador::~Escalonador() {
     for (int i = 0; i < tamanho; i++) {
         delete dados[i];
@@ -15,6 +17,7 @@ Escalonador::~Escalonador() {
     delete[] dados;
 }
 
+//funcao para inserir um elemento no heap, dando prioridade para eventos com menor chave
 void Escalonador::inserir(Evento* evento) {
     if(tamanho == 0)
     {
@@ -39,6 +42,7 @@ void Escalonador::inserir(Evento* evento) {
     tamanho++;
 }
 
+//funcao para remover proximo elemento de menor chave do heap
 Evento* Escalonador::remover() {
     if(tamanho == 0) {return nullptr;}
     Evento* retorno = dados[0];
@@ -82,6 +86,7 @@ Evento* Escalonador::remover() {
     return retorno;
 }
 
+//funcao que retorna se o heap esta vazio
 bool Escalonador::vazio() {
     return (tamanho == 0);
 }

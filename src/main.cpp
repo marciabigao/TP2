@@ -1,3 +1,4 @@
+//inclusao das bibliotecas e dos arquivos necessarios
 #include "../include/Grafo.hpp"
 #include "../include/Escalonador.hpp"
 #include "../include/Pacote.hpp"
@@ -8,8 +9,10 @@
 #include <iostream>
 #include <iomanip>
 
+//determinando uma constante para o valor maximo do heap, que e alocado estaticamente
 const int M_MAXTAM = 200;
 
+//funcao acessorio para capturar informacoes da chave do evento
 std::string extrairString(int inicio, int fim, const std::string& texto) {
     if (inicio < 0 || fim >= static_cast<int>(texto.size()) || inicio > fim) {
         return "";
@@ -34,9 +37,11 @@ int main(int argc, char** argv) {
         arquivo >> quantidadeArmazens;
     }
 
+    //criando as principais estruturas
     Escalonador escalonador(M_MAXTAM, capacidadeTransporte, latenciaTransporte, intervaloEntreTransportes);
     Grafo grafo(quantidadeArmazens, custoRemocao);
 
+    //lendo os vizinhos de cada armazem
     int matrizAdjacencia[quantidadeArmazens][quantidadeArmazens];
     bool adjacencia;
     int numeroVizinhos = 0;
@@ -81,7 +86,7 @@ int main(int argc, char** argv) {
         pacotesSistema[i].setAmarzemDestino(armazemDestino);
 
         //determinando rota do pacote com pesquisa em largura pelo grafo
-        Fila filaPesquisaLargura;
+        Fila filaPesquisaLargura; //estrutura auxiliar para a pesquisa em largura
         bool visitados[quantidadeArmazens];
         int pai[quantidadeArmazens];
         for (int i = 0; i < quantidadeArmazens; i++) {
@@ -151,13 +156,14 @@ int main(int argc, char** argv) {
     }
 
     int pacotesEntregues = 0;
-    while(!escalonador.vazio() && pacotesEntregues < numeroPacotes) {
+    while(!escalonador.vazio() && pacotesEntregues < numeroPacotes) { //enquanto houverem eventos e pacotes nao entregues
+        //retiro o proximo evento de maior prioridade do heap
         Evento* evento = escalonador.remover();
         if(evento == nullptr) {break;}
-        relogio = evento->getTempo();
+        relogio = evento->getTempo(); //configuro o relogio para o instante do proximo evento
         std::string chave = evento->getChave();
 
-        if(evento->getTipoEvento() == 2) {
+        if(evento->getTipoEvento() == 2) { //se o evento e transporte
             int tempoInicioTransporte = relogio;
             int armazemOrigem = std::stoi(extrairString(6, 8, chave));
             int armazemDestino = std::stoi(extrairString(9, 11, chave));
@@ -166,6 +172,7 @@ int main(int argc, char** argv) {
             if(!grafo.armazens[armazemOrigem].secoes[indicePilhaOrigem].vazia()) {
                 Pilha auxiliar;
 
+                //removo os pacotes da secao e os adiciono em uma pilha auxiliar (priorizando o transporte dos mais antigos)
                 while(!grafo.armazens[armazemOrigem].secoes[indicePilhaOrigem].vazia()) {
                     Pacote* pacote = grafo.armazens[armazemOrigem].secoes[indicePilhaOrigem].desempilha();
                     relogio += custoRemocao;
@@ -177,11 +184,13 @@ int main(int argc, char** argv) {
                     auxiliar.empilha(pacote);
                 }
 
+                //carrego no transporte tantos pacotes quantos forem suportador por ele
                 for(int i = 0; i < capacidadeTransporte; i++) {
                     Pacote* pacote = auxiliar.desempilha();
                     pacote->setEstado(4);
                     int novoProxDestino = pacote->rota->getSucessor(armazemDestino);
 
+                    //escalono a chegada dos pacotes no proximo armazem
                     ChegadaPacote* novaChegada = new ChegadaPacote(relogio + latenciaTransporte, pacote, 
                         armazemDestino, novoProxDestino);
                     novaChegada->getPacote()->setEstado(2);
@@ -197,6 +206,7 @@ int main(int argc, char** argv) {
                     }
                 }
 
+                //retorno os pacotes restantes para a secao
                 while(!auxiliar.vazia()) {
                     Pacote* pacote = auxiliar.desempilha();
                     grafo.armazens[armazemOrigem].secoes[indicePilhaOrigem].empilha(pacote);
@@ -208,27 +218,31 @@ int main(int argc, char** argv) {
                 }
             }
 
+            //escalono proximo evento de transporte
             Transporte* novoTransporte = new Transporte(tempoInicioTransporte + intervaloEntreTransportes, armazemOrigem, 
             armazemDestino, capacidadeTransporte);
             escalonador.inserir(novoTransporte);
         }
 
-        if(evento->getTipoEvento() == 1) {
+        if(evento->getTipoEvento() == 1) { //se evento e chegada de pacote
             ChegadaPacote* chegada = dynamic_cast<ChegadaPacote*>(evento);
 
+            //se o pacote chegou ao seu destino final
             if(chegada->getPacote()->getArmazemDestino() == chegada->getIDArmazemChegada() || chegada->getIDArmazemProximoDestino() == -1) {
+                //registro a entrega do pacote
                 std::cout <<  std::setw(7) << std::setfill('0') << relogio << " pacote ";
                 std::cout << std::setw(3) << std::setfill('0') << chegada->getPacote()->getID() << " entregue em ";
                 std::cout << std::setw(3) << std::setfill('0') << chegada->getPacote()->getArmazemDestino() << std::endl;
                 chegada->getPacote()->setEstado(5);
                 pacotesEntregues++;
             }
-            else {
+            else { //se nao chegou ao destino final
                 int armazemChegada = chegada->getIDArmazemChegada();
                 int armazemProximoDestino = chegada->getIDArmazemProximoDestino();
                 int indicePilha = grafo.armazens[armazemChegada].getIndicePilha(armazemProximoDestino);
 
                 chegada->getPacote()->setEstado(3);
+                //armazeno pacote na secao correspondente ao proximo destino
                 grafo.armazens[armazemChegada].secoes[indicePilha].empilha(chegada->getPacote());
 
                 std::cout <<  std::setw(7) << std::setfill('0') << relogio << " pacote ";

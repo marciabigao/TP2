@@ -6,9 +6,9 @@
 
 class Pilha {
     public:
-    int id;
-    NoPilha* topo;
-    int tamanho;
+    int id; //identificador da pilha (identificador do armazem ao qual o pacote sera destinado)
+    NoPilha* topo; //ponteiro para o topo da pilha
+    int tamanho; //tamanho atual da pilha
 
     public:
     Pilha();

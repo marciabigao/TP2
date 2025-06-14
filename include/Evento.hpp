@@ -4,11 +4,12 @@
 #include "Pacote.hpp"
 #include <string>
 
+//TAD representativo do evento na simulacao discreta de eventos
 class Evento {
     protected:
-    std::string chave;
-    int tipoEvento;
-    int tempo;
+    std::string chave; //chave de comparacao entre eventos no heap
+    int tipoEvento; //indicador do tipo de herdeiro que esse evento e
+    int tempo; //momento em que o evento ocorre na simulacao
 
     public:
     Evento();
@@ -19,11 +20,12 @@ class Evento {
     std::string getChave();
 };
 
+//TAD herdeiro de Evento, representativo da chegada de um pacote em um armazem
 class ChegadaPacote : public Evento {
     private:
-    Pacote* pacote;
-    int idArmazemChegada;
-    int idArmazemProximoDestino;
+    Pacote* pacote; //pacote que esta chegando
+    int idArmazemChegada; //onde esse pacote esta chegando
+    int idArmazemProximoDestino; //em qual sessao do armazem atual esse pacote deve ser armazenado
 
     public:
     ChegadaPacote();
@@ -34,16 +36,15 @@ class ChegadaPacote : public Evento {
     void setEstadoPacote(int estado);
 };
 
+//TAD herdeiro de Evento, representativo do transporte de pacotes entre armazens
 class Transporte : public Evento {
     private:
-    Pacote* pacotes;
-    int idArmazemOrigem;
-    int idArmazemDestino;
-    int capacidadeTransporte;
+    int idArmazemOrigem; //origem do transporte 
+    int idArmazemDestino; //destino do transporte
+    int capacidadeTransporte; //quantos pacotes um mesmo transporte transporta, no maximo
 
     public:
     Transporte(int tempo, int idArmazemOrigem, int idArmazemDestino, int capacidadeTransporte);
-    void setPacotes(Pacote* pacotes);
     int getArmazemOrigem();
     int getArmazemDestino();
     Pacote* getPacotes();

@@ -4,11 +4,12 @@
 #include "Armazem.hpp"
 #include "Pilha.hpp"
 
+//TAD representativo de um grafo
 class Grafo {
     public:
-    int numeroVertices;
-    Armazem* armazens;
-    int custoRemocao;
+    int numeroVertices; //numero de vertices do grafo
+    Armazem* armazens; //nos do grafo (que serao armazens)
+    int custoRemocao; //custo para remover um pacote de uma pilha
 
     public:
     Grafo(int numeroVertices, int custoRemocao);

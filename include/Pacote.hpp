@@ -4,18 +4,19 @@
 #include "ListaEncadeada.hpp"
 #include <string>
 
+//TAD representativo de um pacote 
 class Pacote {
     private:
-    int id;
-    int momentoPostagem;
-    int armazemOrigem;
-    int armazemDestino;
-    int estado;
-    int tempoArmazenado;
-    int tempoSendoTransportado;
+    int id; //identificador do pacote
+    int momentoPostagem; //momento em que o pacote entrou no sistema
+    int armazemOrigem; //armazem de postagem do pacote
+    int armazemDestino; //armazem de destino final do pacote  
+    int estado; //estado no qual o pacote se encontra
+    int tempoArmazenado; //tempo em que o pacote ficou armazenado
+    int tempoSendoTransportado; //tempo em que o pacote ficou em transporte
 
     public:
-    ListaEncadeada* rota;
+    ListaEncadeada* rota; //melhor rota do armazem de destino ao armazem de origem
     Pacote();
 
     int getID();

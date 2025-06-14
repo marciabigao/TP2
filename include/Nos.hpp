@@ -3,10 +3,11 @@
 
 class Pacote;
 
+//TAD representativo de um no da fila
 class NoFila {
     public:
-    int id;
-    NoFila* proximo;
+    int id; //identificador do elemento (identificador do armazem na busca por largura)
+    NoFila* proximo; //ponteiro para o proximo elemento da fila
 
     public:
     NoFila();
@@ -14,10 +15,11 @@ class NoFila {
     friend class Fila;
 };
 
+//TAD representativo de um no da lista encadeada
 class NoLista {
     public:
-    int id;
-    NoLista* proximo;
+    int id; //identificador do no (identificador do armazem vizinho ou da rota)
+    NoLista* proximo; //ponteiro para o proximo elemento da lista
 
     public:
     NoLista();
@@ -26,10 +28,11 @@ class NoLista {
     friend class Grafo;
 };
 
+//TAD representativo de um no da pilha
 class NoPilha {
     public:
-    Pacote* pacote;
-    NoPilha* proximo;
+    Pacote* pacote; //ponteiro para o pacote armazenado na pilha
+    NoPilha* proximo; //ponteiro para o proximo elemento da pilha
 
     public:
     NoPilha();

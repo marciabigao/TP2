@@ -2,6 +2,7 @@
 #include "../include/Nos.hpp"
 #include <iostream>
 
+//construtor
 Grafo::Grafo(int numeroVertices, int custoRemocao) {
     this->numeroVertices = numeroVertices;
     this->armazens = new Armazem[numeroVertices];
@@ -12,18 +13,22 @@ Grafo::Grafo(int numeroVertices, int custoRemocao) {
     }
 }
 
+//destrutor
 Grafo::~Grafo() {
     delete[] armazens;
 }
 
+//atribui o numero de vizinhos de um determinado armazem
 void Grafo::setNumeroVizinhos(int IDArmazemAlvo, int numVizinhos) {
     armazens[IDArmazemAlvo].numeroVizinhos = numVizinhos;
 }
 
+//adiciona um vizinho a lista de vizinhos de um determinado armazem
 void Grafo::insereVizinho(int IDArmazemAlvo, int IDArmazemVizinho) {
     armazens[IDArmazemAlvo].vizinhos->inserir(IDArmazemVizinho);
 }
 
+//cria as secoes (pilhas) de um determinado armazem
 void Grafo::criaSecoes(int IDArmazemAlvo) {
     armazens[IDArmazemAlvo].alocarPilha();
 
@@ -43,6 +48,7 @@ void Grafo::criaSecoes(int IDArmazemAlvo) {
     }
 }
 
+//adiciona um pacote a uma determinada secao
 void Grafo::inserePacoteSecao(int IDArmazemAlvo, int secaoDestino, Pacote* pacote) {
     int indice = armazens[IDArmazemAlvo].getIndicePilha(secaoDestino);
     armazens[IDArmazemAlvo].secoes[indice].empilha(pacote);

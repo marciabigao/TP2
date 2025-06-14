@@ -1,11 +1,13 @@
 #include "../include/Fila.hpp"
 
+//construtor
 Fila::Fila() {
     frente = new NoFila();
     tras = frente;
     tamanho = 0;
 }
 
+//retira todos os nos da fila, mantendo apenas a cabeca
 void Fila::limpa() {
     NoFila* p;
 
@@ -20,11 +22,13 @@ void Fila::limpa() {
     tras = frente;
 }
 
+//destrutor
 Fila::~Fila() {
     this->limpa();
     delete frente;
 }
 
+//adiciona elemento ao final da fila
 void Fila::enfileira(int id) {
     NoFila* nova;
 
@@ -35,6 +39,7 @@ void Fila::enfileira(int id) {
     tamanho++;
 }
 
+//pega o primeiro elemento da fila
 int Fila::desenfileira() {
     NoFila* p;
     int retorno;
@@ -52,6 +57,7 @@ int Fila::desenfileira() {
     return retorno;
 }
 
+//retorna se a fila esta vazia ou nao
 bool Fila::vazia() {
     return (tamanho == 0);
 }

@@ -3,11 +3,12 @@
 
 #include "Nos.hpp"
 
+//TAD representativo de uma fila
 class Fila {
     private:
-    int tamanho;
-    NoFila* frente;
-    NoFila* tras;
+    int tamanho; //tamanho atual da fila
+    NoFila* frente; //ponteiro para o primeiro elemento da fila
+    NoFila* tras; //ponteiro para o ultimo elemento da fila
 
     public:
     Fila();
