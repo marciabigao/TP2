@@ -1,7 +1,7 @@
 #ifndef LISTAENC_HPP
 #define LISTAENC_HPP
 
-#include "NoLista.hpp"
+#include "Nos.hpp"
 
 class ListaEncadeada {
     public:

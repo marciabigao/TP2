@@ -1,4 +1,5 @@
 #include "../include/ListaEncadeada.hpp"
+#include "../include/Nos.hpp"
 
 ListaEncadeada::ListaEncadeada() {
     primeiro = new NoLista();

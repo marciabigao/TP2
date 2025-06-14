@@ -8,9 +8,6 @@
 #include <iostream>
 #include <iomanip>
 
-#include "../include/NoLista.hpp"
-#include "../include/NoPilha.hpp"
-
 const int M_MAXTAM = 200;
 
 std::string extrairString(int inicio, int fim, const std::string& texto) {
@@ -62,24 +59,6 @@ int main(int argc, char** argv) {
     }
 
     numeroArestas = numeroArestas / 2;
-    
-    /*
-    for(int i = 0; i < quantidadeArmazens; i++) {
-        std::cout << "ID armazem: " << grafo.armazens[i].id << " Numero vz: " << grafo.armazens[i].numeroVizinhos << std::endl;
-        std::cout << "Vizinhos: ";
-        NoLista* p = grafo.armazens[i].vizinhos->primeiro->proximo;
-        while(p != nullptr) {
-            std::cout << p->id << " ";
-            p = p->proximo;
-        }
-        std::cout << std::endl;
-        std::cout << "Pilhas: ";
-        for(int j = 0; j < grafo.armazens[i].numeroVizinhos; j++) {
-            std::cout << grafo.armazens[i].secoes[j].id << " ";
-        }
-        std::cout << std::endl << std::endl;
-    }
-    */
 
     //leitura dos pacotes e cálculo da sua rota
     int numeroPacotes;
@@ -150,38 +129,6 @@ int main(int argc, char** argv) {
 
         pacotesSistema[i].setRota(aux);
     }
-
-    /*
-    for(int i = 0; i < numeroPacotes; i++) {
-        std::cout << "ID pacote: " << pacotesSistema[i].getID() << " Postagem: " << pacotesSistema[i].getMomentoPostagem() 
-        << " Origem: " << pacotesSistema[i].getArmazemOrigem() << " Destino: " << pacotesSistema[i].getArmazemDestino()
-        << " Estado: " << pacotesSistema[i].getEstado() << " Temp Arm: " << pacotesSistema[i].getTempoArmazenado()
-        << " Tempo Transp: " << pacotesSistema[i].getTempoSendoTransportado() << " Rota: ";
-
-        NoLista* p = pacotesSistema[i].rota->primeiro->proximo;
-        while(p != nullptr) {
-            std::cout << p->id << " ";
-            p = p->proximo;
-        }
-        std::cout << std::endl;
-    }
-    */
-
-    /*
-    for(int i = 0; i < quantidadeArmazens; i++) {
-        std::cout << "Pilhas Armazem " << grafo.armazens[i].id << std::endl;
-        for(int j = 0; j < grafo.armazens[i].numeroVizinhos; j++) {
-            std::cout << "Pilha Destino: " << grafo.armazens[i].secoes[j].id << std::endl;
-            NoPilha* p = grafo.armazens[i].secoes[j].topo;
-            while(p != nullptr) {
-                std::cout << p->pacote.getID() << " ";
-                p = p->proximo;
-            }
-            std::cout << std::endl;
-        }
-        std::cout << std::endl;
-    }
-    */
 
     //começar a simulação de eventos
 

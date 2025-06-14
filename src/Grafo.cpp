@@ -1,5 +1,5 @@
 #include "../include/Grafo.hpp"
-#include "../include/NoLista.hpp"
+#include "../include/Nos.hpp"
 #include <iostream>
 
 Grafo::Grafo(int numeroVertices, int custoRemocao) {

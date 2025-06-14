@@ -1,7 +1,7 @@
 #ifndef PILHA_HPP
 #define PILHA_HPP
 
-#include "NoPilha.hpp"
+#include "Nos.hpp"
 #include "Pacote.hpp"
 
 class Pilha {
