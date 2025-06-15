@@ -1,10 +1,16 @@
 #include "../include/Armazem.hpp"
+#include <iostream>
 
 //construtor
 Armazem::Armazem() {
     this->id = -1;
     this->numeroVizinhos = 0;
-    this->vizinhos = new ListaEncadeada();
+
+    try {
+        this->vizinhos = new ListaEncadeada();
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Erro ao alocar memória para o vetor: " << e.what() << std::endl;
+    }
 }
 
 //destrutor

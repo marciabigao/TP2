@@ -1,4 +1,5 @@
 #include "../include/Pilha.hpp"
+#include <iostream>
 
 //construtor
 Pilha::Pilha() {
@@ -31,7 +32,12 @@ int Pilha::getID() {
 void Pilha::empilha(Pacote* pacote) {
     NoPilha* novo;
 
-    novo = new NoPilha();
+    try {
+        novo = new NoPilha();
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Erro ao alocar memória para a variavel: " << e.what() << std::endl;
+    }
+
     novo->pacote = pacote;
     novo->proximo = topo;
     topo = novo;

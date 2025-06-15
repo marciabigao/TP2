@@ -1,9 +1,16 @@
 #include "../include/Escalonador.hpp"
+#include <iostream>
 
 //construtor
 Escalonador::Escalonador(int tamanhoMax, int capacidadeTransporte, int latenciaTransporte, int intervaloEntreTransportes) {
     this->tamanho = 0;
-    this->dados = new Evento*[tamanhoMax];
+
+    try {
+        this->dados = new Evento*[tamanhoMax];
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Erro ao alocar memória para o vetor: " << e.what() << std::endl;
+    }
+
     this->capacidadeTransporte = capacidadeTransporte;
     this->latenciaTransporte = latenciaTransporte;
     this->intervaloEntreTransportes = intervaloEntreTransportes;

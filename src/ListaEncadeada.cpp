@@ -1,9 +1,16 @@
 #include "../include/ListaEncadeada.hpp"
 #include "../include/Nos.hpp"
+#include <iostream>
 
 //construtor
 ListaEncadeada::ListaEncadeada() {
-    primeiro = new NoLista();
+
+    try {
+        primeiro = new NoLista();
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Erro ao alocar memória para o vetor: " << e.what() << std::endl;
+    }
+
     ultimo = primeiro;
     tamanho = 0;
 }
@@ -69,7 +76,12 @@ int ListaEncadeada::getSucessor(int id) {
 void ListaEncadeada::inserir(int id) {
     NoLista* novo;
 
-    novo = new NoLista();
+    try {
+        novo = new NoLista();
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Erro ao alocar memória para a variavel: " << e.what() << std::endl;
+    }
+
     novo->id = id;
     ultimo->proximo = novo;
     ultimo = novo;

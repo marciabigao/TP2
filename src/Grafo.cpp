@@ -5,7 +5,13 @@
 //construtor
 Grafo::Grafo(int numeroVertices, int custoRemocao) {
     this->numeroVertices = numeroVertices;
-    this->armazens = new Armazem[numeroVertices];
+
+    try {
+        this->armazens = new Armazem[numeroVertices];
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Erro ao alocar memória para o vetor: " << e.what() << std::endl;
+    }
+
     this->custoRemocao = custoRemocao;
 
     for(int i = 0; i < numeroVertices; i++) {

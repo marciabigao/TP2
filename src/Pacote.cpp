@@ -1,4 +1,5 @@
 #include "../include/Pacote.hpp"
+#include <iostream>
 
 //construtor
 Pacote::Pacote() {
@@ -9,7 +10,13 @@ Pacote::Pacote() {
     this->estado = 1;
     this->tempoArmazenado = 0;
     this->tempoSendoTransportado = 0;
-    this->rota = new ListaEncadeada();
+
+    try {
+        this->rota = new ListaEncadeada();
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Erro ao alocar memória para o vetor: " << e.what() << std::endl;
+    }
+
     this->ultimoTempoChegada = 0;
 }
 

@@ -1,8 +1,16 @@
 #include "../include/Fila.hpp"
+#include <iostream>
 
 //construtor
 Fila::Fila() {
     frente = new NoFila();
+
+    try {
+        frente = new NoFila();
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Erro ao alocar memória para o vetor: " << e.what() << std::endl;
+    }
+
     tras = frente;
     tamanho = 0;
 }
@@ -32,7 +40,12 @@ Fila::~Fila() {
 void Fila::enfileira(int id) {
     NoFila* nova;
 
-    nova = new NoFila();
+    try {
+        nova = new NoFila();
+    } catch (const std::bad_alloc& e) {
+        std::cerr << "Erro ao alocar memória para a variavel: " << e.what() << std::endl;
+    }
+
     nova->id = id;
     tras->proximo = nova;
     tras = nova;
